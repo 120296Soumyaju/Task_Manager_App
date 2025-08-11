@@ -49,7 +49,7 @@ export default function EmployeeLayout({
               Profile
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <Link href="/login">
+            <Link href="/">
               <DropdownMenuItem>
                 <LogOut className="mr-2 h-4 w-4" />
                 Logout
