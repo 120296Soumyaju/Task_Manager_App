@@ -6,6 +6,7 @@ import {
   MoreHorizontal,
 } from "lucide-react";
 import { format } from "date-fns";
+import { notifyEmployee } from "@/ai/flows/notify-flow";
 
 import { cn } from "@/lib/utils";
 import {
@@ -74,7 +75,7 @@ export default function TasksPage() {
     ? mockUsers.filter(u => u.role === 'employee' && u.departmentId === selectedDepartment)
     : [];
 
-  const handleCreateTask = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleCreateTask = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
     const title = form.get("title") as string;
@@ -94,10 +95,31 @@ export default function TasksPage() {
       };
       setTasks([new_task, ...tasks]);
       const employee = mockUsers.find(u => u.id === employeeId);
-      toast({
-        title: "Task Created Successfully!",
-        description: `An email notification has been sent to ${employee?.name}.`,
-      });
+      
+      if (employee) {
+        try {
+          await notifyEmployee({
+            employeeName: employee.name,
+            employeeEmail: employee.email,
+            taskTitle: title,
+            taskDescription: description,
+            taskDueDate: format(dueDate, "PPP"),
+            dashboardUrl: `${window.location.origin}/dashboard`
+          });
+          toast({
+            title: "Task Created Successfully!",
+            description: `An email notification has been sent to ${employee?.name}.`,
+          });
+        } catch (error) {
+           console.error("Failed to send notification:", error);
+           toast({
+            variant: "destructive",
+            title: "Uh oh! Something went wrong.",
+            description: "There was a problem sending the email notification.",
+          });
+        }
+      }
+
       (event.target as HTMLFormElement).reset();
       setSelectedDepartment(null);
       setDueDate(undefined);
