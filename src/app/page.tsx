@@ -38,9 +38,14 @@ export default function LandingPage() {
             <CheckSquare className="h-7 w-7 text-primary" />
             <span className="text-xl font-bold tracking-tight">TaskFlow</span>
           </Link>
-          <Button asChild>
-            <Link href="/login">Login</Link>
-          </Button>
+          <div className="flex items-center gap-2">
+             <Button asChild variant="outline">
+              <Link href="/signup">Create an Account</Link>
+            </Button>
+            <Button asChild>
+              <Link href="/login">Login</Link>
+            </Button>
+          </div>
         </div>
       </header>
 
@@ -56,7 +61,7 @@ export default function LandingPage() {
           </p>
           <div className="mt-8">
             <Button asChild size="lg">
-              <Link href="/signup">Create an Account</Link>
+              <Link href="/login">Get Started</Link>
             </Button>
           </div>
         </section>
