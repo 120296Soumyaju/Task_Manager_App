@@ -1,3 +1,4 @@
+
 export type User = {
   id: string;
   name: string;
@@ -32,4 +33,5 @@ export type Task = {
   employeeId: string;
   departmentId: string;
   comments: Comment[];
+  read: boolean;
 };

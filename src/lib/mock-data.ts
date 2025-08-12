@@ -1,3 +1,4 @@
+
 import type { Department, Task, User, Comment } from '@/lib/types';
 
 export const mockUsers: User[] = [
@@ -38,6 +39,7 @@ export const mockTasks: Task[] = [
     employeeId: 'u2',
     departmentId: 'd1',
     comments: comments['t1'],
+    read: true,
   },
   {
     id: 't2',
@@ -48,6 +50,7 @@ export const mockTasks: Task[] = [
     employeeId: 'u3',
     departmentId: 'd1',
     comments: comments['t2'],
+    read: true,
   },
   {
     id: 't3',
@@ -58,6 +61,7 @@ export const mockTasks: Task[] = [
     employeeId: 'u4',
     departmentId: 'd2',
     comments: [],
+    read: true,
   },
   {
     id: 't4',
@@ -68,6 +72,7 @@ export const mockTasks: Task[] = [
     employeeId: 'u5',
     departmentId: 'd3',
     comments: comments['t4'],
+    read: true,
   },
   {
     id: 't5',
@@ -78,6 +83,7 @@ export const mockTasks: Task[] = [
     employeeId: 'u2',
     departmentId: 'd1',
     comments: [],
+    read: false,
   },
   {
     id: 't6',
@@ -88,5 +94,6 @@ export const mockTasks: Task[] = [
     employeeId: 'u3',
     departmentId: 'd4',
     comments: [],
+    read: true,
   },
 ];

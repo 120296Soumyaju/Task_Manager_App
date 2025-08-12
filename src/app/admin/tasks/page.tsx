@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -92,6 +93,7 @@ export default function TasksPage() {
         dueDate: format(dueDate, "yyyy-MM-dd"),
         status: "To Do" as TaskStatus,
         comments: [],
+        read: false,
       };
       setTasks([new_task, ...tasks]);
       const employee = mockUsers.find(u => u.id === employeeId);
