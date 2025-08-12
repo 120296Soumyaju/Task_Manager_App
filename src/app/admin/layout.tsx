@@ -105,7 +105,7 @@ export default function AdminLayout({
                     </DropdownMenuItem>
                   </Link>
                   <DropdownMenuSeparator />
-                  <Link href="/login">
+                  <Link href="/">
                     <DropdownMenuItem>
                       <LogOut className="mr-2 h-4 w-4" />
                       Logout
