@@ -39,9 +39,6 @@ export default function LandingPage() {
             <span className="text-xl font-bold tracking-tight">TaskFlow</span>
           </Link>
           <div className="flex items-center gap-2">
-             <Button asChild variant="outline">
-              <Link href="/signup">Create an Account</Link>
-            </Button>
             <Button asChild>
               <Link href="/login">Login</Link>
             </Button>
