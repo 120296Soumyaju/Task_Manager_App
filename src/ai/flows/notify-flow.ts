@@ -9,7 +9,7 @@
 import { ai } from '@/ai/genkit';
 import { z } from 'zod';
 
-export const NotifyEmployeeInputSchema = z.object({
+const NotifyEmployeeInputSchema = z.object({
   employeeName: z.string().describe('The name of the employee.'),
   employeeEmail: z.string().describe('The email address of the employee.'),
   taskTitle: z.string().describe('The title of the task.'),
