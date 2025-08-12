@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -40,6 +40,7 @@ export default function EmployeeSettingsPage() {
   const employeeUser = mockUsers.find(u => u.email === 'alice@taskflow.com')!;
   
   const [user, setUser] = useState(employeeUser);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
@@ -47,7 +48,34 @@ export default function EmployeeSettingsPage() {
       name: user.name,
       email: user.email,
     },
+    // Keep form values in sync with the user state
+    values: {
+      name: user.name,
+      email: user.email,
+    }
   });
+
+  const handleAvatarClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const newAvatarUrl = e.target?.result as string;
+        // In a real app, you would upload this file to a storage service
+        // and then update the user's avatar URL in the database.
+        setUser({ ...user, avatar: newAvatarUrl });
+        toast({
+          title: "Avatar Updated",
+          description: "Your profile picture has been changed.",
+        });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const onSubmit: SubmitHandler<ProfileFormValues> = (data) => {
     // NOTE: This only updates the local state as we are using mock data.
@@ -70,10 +98,26 @@ export default function EmployeeSettingsPage() {
       <Card>
         <CardHeader>
             <div className="flex items-center gap-4">
-            <Avatar className="h-16 w-16">
-              <AvatarImage src={user.avatar} alt={user.name} />
-              <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
-            </Avatar>
+            <button
+              onClick={handleAvatarClick}
+              className="relative rounded-full"
+              aria-label="Change profile picture"
+            >
+              <Avatar className="h-16 w-16">
+                <AvatarImage src={user.avatar} alt={user.name} />
+                <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
+              </Avatar>
+              <div className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 hover:opacity-100 transition-opacity rounded-full cursor-pointer">
+                <span className="text-xs text-white">Change</span>
+              </div>
+            </button>
+            <input
+              type="file"
+              ref={fileInputRef}
+              onChange={handleFileChange}
+              className="hidden"
+              accept="image/*"
+            />
             <div>
               <CardTitle>Profile</CardTitle>
               <CardDescription>
