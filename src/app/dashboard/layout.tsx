@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { LogOut, User } from "lucide-react";
+import { LogOut, Settings } from "lucide-react";
 
 import {
   DropdownMenu,
@@ -44,10 +44,12 @@ export default function EmployeeLayout({
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>{employee?.name}</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <User className="mr-2 h-4 w-4" />
-              Profile
-            </DropdownMenuItem>
+            <Link href="/dashboard/settings">
+              <DropdownMenuItem>
+                <Settings className="mr-2 h-4 w-4" />
+                Settings
+              </DropdownMenuItem>
+            </Link>
             <DropdownMenuSeparator />
             <Link href="/">
               <DropdownMenuItem>

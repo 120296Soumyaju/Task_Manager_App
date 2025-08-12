@@ -6,6 +6,7 @@ import {
   CheckSquare,
   Home,
   LogOut,
+  Settings,
   Users,
 } from "lucide-react";
 import Link from "next/link";
@@ -96,7 +97,12 @@ export default function AdminLayout({
                 <DropdownMenuContent align="end">
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem>Settings</DropdownMenuItem>
+                  <Link href="/admin/settings">
+                    <DropdownMenuItem>
+                      <Settings className="mr-2 h-4 w-4" />
+                      Settings
+                    </DropdownMenuItem>
+                  </Link>
                   <DropdownMenuSeparator />
                   <Link href="/">
                     <DropdownMenuItem>
