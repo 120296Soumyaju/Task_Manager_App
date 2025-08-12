@@ -56,7 +56,7 @@ export default function LandingPage() {
           </p>
           <div className="mt-8">
             <Button asChild size="lg">
-              <Link href="/login">Get Started</Link>
+              <Link href="/signup">Create an Account</Link>
             </Button>
           </div>
         </section>
