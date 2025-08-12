@@ -58,7 +58,7 @@ export default function LandingPage() {
           </p>
           <div className="mt-8">
             <Button asChild size="lg">
-              <Link href="/login">Get Started</Link>
+              <a href="#features">Get Started</a>
             </Button>
           </div>
         </section>
