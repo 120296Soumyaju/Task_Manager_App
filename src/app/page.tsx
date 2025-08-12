@@ -7,6 +7,7 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -56,6 +57,17 @@ export default function LoginPage() {
                   <Button className="w-full">Login</Button>
                 </Link>
               </CardContent>
+              <CardFooter className="text-sm">
+                <p className="text-muted-foreground">
+                  Don&apos;t have an account?{" "}
+                  <Link
+                    href="/signup"
+                    className="font-medium text-primary hover:underline"
+                  >
+                    Sign up
+                  </Link>
+                </p>
+              </CardFooter>
             </Card>
           </TabsContent>
           <TabsContent value="admin">
