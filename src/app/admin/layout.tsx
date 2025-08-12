@@ -1,3 +1,4 @@
+
 "use client";
 
 import {
@@ -104,7 +105,7 @@ export default function AdminLayout({
                     </DropdownMenuItem>
                   </Link>
                   <DropdownMenuSeparator />
-                  <Link href="/">
+                  <Link href="/login">
                     <DropdownMenuItem>
                       <LogOut className="mr-2 h-4 w-4" />
                       Logout

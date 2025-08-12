@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -27,7 +28,9 @@ export default function EmployeeLayout({
   return (
     <div className="flex min-h-screen w-full flex-col">
       <header className="sticky top-0 flex h-16 items-center justify-between gap-4 border-b bg-background px-4 md:px-6">
-        <Logo />
+        <Link href="/">
+          <Logo />
+        </Link>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="secondary" size="icon" className="rounded-full">
@@ -51,7 +54,7 @@ export default function EmployeeLayout({
               </DropdownMenuItem>
             </Link>
             <DropdownMenuSeparator />
-            <Link href="/">
+            <Link href="/login">
               <DropdownMenuItem>
                 <LogOut className="mr-2 h-4 w-4" />
                 Logout

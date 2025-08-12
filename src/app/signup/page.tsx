@@ -65,7 +65,7 @@ export default function SignupPage() {
       description: "You have successfully signed up. Please log in.",
     });
 
-    router.push("/");
+    router.push("/login");
   };
 
   return (
@@ -128,7 +128,7 @@ export default function SignupPage() {
             <p className="text-muted-foreground">
               Already have an account?{" "}
               <Link
-                href="/"
+                href="/login"
                 className="font-medium text-primary hover:underline"
               >
                 Login

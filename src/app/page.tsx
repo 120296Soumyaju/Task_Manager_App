@@ -1,105 +1,102 @@
+
 "use client";
 
-import { CheckSquare } from "lucide-react";
 import Link from "next/link";
+import { CheckSquare, Users, BarChart, Bell } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-export default function LoginPage() {
+export default function LandingPage() {
+  const features = [
+    {
+      icon: <Users className="h-8 w-8" />,
+      title: "Team Collaboration",
+      description: "Centralized dashboard for admins and employees to manage tasks and departments.",
+    },
+    {
+      icon: <CheckSquare className="h-8 w-8" />,
+      title: "Effortless Task Tracking",
+      description: "Intuitive kanban-style boards to create, assign, and monitor task progress from 'To Do' to 'Completed'.",
+    },
+    {
+      icon: <Bell className="h-8 w-8" />,
+      title: "Automated Notifications",
+      description: "Leverage AI to automatically send email notifications to employees when new tasks are assigned.",
+    },
+    {
+      icon: <BarChart className="h-8 w-8" />,
+      title: "Insightful Analytics",
+      description: "Get a clear overview of team productivity with dashboard analytics and task status charts.",
+    },
+  ];
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background p-4">
-      <div className="w-full max-w-md">
-        <div className="mb-8 flex flex-col items-center text-center">
-          <CheckSquare className="h-12 w-12 text-primary" />
-          <h1 className="mt-4 text-3xl font-bold tracking-tight">TaskFlow</h1>
-          <p className="text-muted-foreground">
-            Welcome back! Please select your role to login.
+    <div className="flex min-h-screen flex-col bg-background">
+      <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur-sm">
+        <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
+          <Link href="/" className="flex items-center gap-2">
+            <CheckSquare className="h-7 w-7 text-primary" />
+            <span className="text-xl font-bold tracking-tight">TaskFlow</span>
+          </Link>
+          <Button asChild>
+            <Link href="/login">Login</Link>
+          </Button>
+        </div>
+      </header>
+
+      <main className="flex-1">
+        <section className="container mx-auto px-4 py-20 text-center md:px-6 md:py-32">
+          <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
+            Streamline Your Team's Workflow
+          </h1>
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
+            TaskFlow is the ultimate solution for managing tasks, empowering
+            your team with AI-driven notifications and a clear, collaborative
+            dashboard.
+          </p>
+          <div className="mt-8">
+            <Button asChild size="lg">
+              <Link href="/login">Get Started</Link>
+            </Button>
+          </div>
+        </section>
+
+        <section id="features" className="bg-secondary/50 py-20 md:py-24">
+          <div className="container mx-auto px-4 md:px-6">
+            <div className="text-center">
+              <h2 className="text-3xl font-bold tracking-tight">
+                Everything You Need to Boost Productivity
+              </h2>
+              <p className="mt-4 text-muted-foreground">
+                Discover the features that make TaskFlow the perfect choice for your team.
+              </p>
+            </div>
+            <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+              {features.map((feature) => (
+                <Card key={feature.title} className="text-center">
+                  <CardHeader>
+                    <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary">
+                      {feature.icon}
+                    </div>
+                    <CardTitle className="mt-4">{feature.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">{feature.description}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="border-t">
+        <div className="container mx-auto flex items-center justify-between px-4 py-6 md:px-6">
+          <p className="text-sm text-muted-foreground">
+            &copy; {new Date().getFullYear()} TaskFlow. All rights reserved.
           </p>
         </div>
-        <Tabs defaultValue="employee" className="w-full">
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="employee">Employee</TabsTrigger>
-            <TabsTrigger value="admin">Admin</TabsTrigger>
-          </TabsList>
-          <TabsContent value="employee">
-            <Card>
-              <CardHeader>
-                <CardTitle>Employee Login</CardTitle>
-                <CardDescription>
-                  Enter your credentials to access your task dashboard.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="employee-email">Email</Label>
-                  <Input
-                    id="employee-email"
-                    type="email"
-                    placeholder="employee@example.com"
-                    defaultValue="alice@taskflow.com"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="employee-password">Password</Label>
-                  <Input id="employee-password" type="password" defaultValue="password123" />
-                </div>
-                <Link href="/dashboard" className="w-full">
-                  <Button className="w-full">Login</Button>
-                </Link>
-              </CardContent>
-              <CardFooter className="text-sm">
-                <p className="text-muted-foreground">
-                  Don&apos;t have an account?{" "}
-                  <Link
-                    href="/signup"
-                    className="font-medium text-primary hover:underline"
-                  >
-                    Sign up
-                  </Link>
-                </p>
-              </CardFooter>
-            </Card>
-          </TabsContent>
-          <TabsContent value="admin">
-            <Card>
-              <CardHeader>
-                <CardTitle>Admin Login</CardTitle>
-                <CardDescription>
-                  Access the admin panel to manage the application.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="admin-email">Email</Label>
-                  <Input
-                    id="admin-email"
-                    type="email"
-                    placeholder="admin@example.com"
-                     defaultValue="admin@taskflow.com"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="admin-password">Password</Label>
-                  <Input id="admin-password" type="password" defaultValue="adminpass" />
-                </div>
-                <Link href="/admin/dashboard" className="w-full">
-                  <Button className="w-full">Login</Button>
-                </Link>
-              </CardContent>
-            </Card>
-          </TabsContent>
-        </Tabs>
-      </div>
+      </footer>
     </div>
   );
 }
